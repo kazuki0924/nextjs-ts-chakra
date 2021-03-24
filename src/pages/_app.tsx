@@ -1,25 +1,31 @@
-import { ChakraProvider } from "@chakra-ui/react";
-import { AppProps } from "next/app";
-import Head from "next/head";
+import { ChakraProvider } from '@chakra-ui/react';
+import { AppProps } from 'next/app';
+import Head from 'next/head';
+import React from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
-import Layout from "../components/layout";
+import Layout from '../components/layout';
 
-import customTheme from "../styles/customTheme";
-import "../styles/globals.css";
+import customTheme from '../styles/customTheme';
+import '../styles/globals.css';
+
+const queryClient = new QueryClient();
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <ChakraProvider theme={customTheme}>
-      <Head>
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
-        />
-      </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={customTheme}>
+        <Head>
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
+          />
+        </Head>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ChakraProvider>
+    </QueryClientProvider>
   );
 };
 
