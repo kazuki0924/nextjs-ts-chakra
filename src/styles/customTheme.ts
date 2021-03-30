@@ -5,6 +5,7 @@ const customTheme = extendTheme({
     ...theme.fonts,
     /** Example */
     // body: "Work Sans, sans-serif",
+    body: "Inter",
     // heading: "Markazi Text, serif",
   },
   colors: {

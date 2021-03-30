@@ -1,8 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
-const APP_NAME = "nextchakra-starter";
-const APP_DESCRIPTION =
-  "Next.js app template with Chakra-UI, TypeScript, and PWA configured";
+const APP_NAME = "wyr";
+const APP_DESCRIPTION = "What You Read App";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: any) {
@@ -26,14 +25,13 @@ class MyDocument extends Document {
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="theme-color" content="#FFFFFF" />
 
-          {/* add your own app-icon */}
-          {/* <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/icons/apple-touch-icon.png"
+          <link rel="shortcut icon" href="books.png" />
+          <link rel="icon" href="books.png" />
+          <link rel="apple-touch-icon" href="books.png" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+            rel="stylesheet"
           />
-          <link rel="shortcut icon" href="/app-icon.png" /> */}
-          <link rel="manifest" href="/manifest.json" />
         </Head>
         <body>
           <Main />

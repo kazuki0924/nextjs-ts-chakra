@@ -1,5 +1,5 @@
 {
-  "name": "nextjs-ts-chakra",
+  "name": "what-you-read-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,20 +10,24 @@
     "upgrade": "yarn upgrade-interactive --latest"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^1.0.7",
     "@chakra-ui/react": "^1.4.1",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
     "axios": "^0.21.1",
+    "emoji-mart": "^3.0.1",
     "framer-motion": "^4.0.2",
     "next": "^10.0.9",
-    "next-pwa": "^5.0.6",
     "react": "^17.0.2",
+    "react-cool-onclickoutside": "^1.6.1",
     "react-dom": "^17.0.2",
+    "react-hook-form": "^6.15.5",
     "react-icons": "^4.2.0",
     "react-query": "^3.13.0"
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^3.0.3",
+    "@types/emoji-mart": "^3.0.4",
     "@types/node": "^14.14.35",
     "@types/react": "^17.0.3",
     "prettier": "^2.2.1",

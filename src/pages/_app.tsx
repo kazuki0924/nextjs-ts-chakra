@@ -1,19 +1,21 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import React from 'react';
+import React, {useRef} from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-
 import Layout from '../components/layout';
-
 import customTheme from '../styles/customTheme';
 import '../styles/globals.css';
 
-const queryClient = new QueryClient();
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps }: AppProps) => {
+  const queryClientRef = useRef<QueryClient>();
+  if (!queryClientRef.current) {
+    queryClientRef.current = new QueryClient();
+  }
+
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClientRef.current}>
       <ChakraProvider theme={customTheme}>
         <Head>
           <meta
@@ -29,4 +31,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default MyApp;
+export default App;
