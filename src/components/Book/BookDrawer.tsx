@@ -1,26 +1,16 @@
-import { AddIcon } from '@chakra-ui/icons';
-import {
-  Box,
-  Button,
-  Drawer,
-  DrawerBody,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerHeader,
-  DrawerOverlay,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-  useDisclosure,
-  useToast,
-} from '@chakra-ui/react';
 import axios from 'axios';
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from 'react-query';
-import { API_URL } from '../common/const';
-import EmojiPicker from './EmojiPicker';
+
+import { AddIcon } from '@chakra-ui/icons';
+import {
+  Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay,
+  FormControl, FormErrorMessage, FormLabel, Input, useDisclosure, useToast, VStack,
+} from '@chakra-ui/react';
+
+import { API_URL } from '../../common/const';
+import { EmojiButton } from '../Emoji/EmojiButton';
+import { EmojiPicker } from '../Emoji/EmojiPicker';
 
 const createBook = async (book: {
   title: string;
@@ -49,13 +39,21 @@ const BookDrawer = () => {
   }) => {
     mutate(values);
     onClose();
-    isSuccess ? toast({
-      title: 'Book added.',
-      description: "You've aded book to your list.",
-      status: 'success',
-      duration: 1000,
-      isClosable: true,
-    }) : null;
+    isSuccess
+      ? toast({
+          title: 'Book added.',
+          description: "You've aded book to your list.",
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        })
+      : toast({
+          title: 'Failed to add book to the list.',
+          description: 'failed',
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        });
   };
 
   return (
@@ -63,17 +61,16 @@ const BookDrawer = () => {
       <Button
         variant={'solid'}
         colorScheme={'teal'}
-        mx={4}
         onClick={onOpen}
         leftIcon={<AddIcon />}
       >
-        Action
+        Add
       </Button>
-      <Drawer isOpen={isOpen} onClose={onClose}>
+      <Drawer size="md" isOpen={isOpen} onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Add What To Read</DrawerHeader>
+          <DrawerHeader>What you read?</DrawerHeader>
           <DrawerBody>
             <Box mb={2}>
               {isLoading ? (
@@ -89,33 +86,40 @@ const BookDrawer = () => {
                 </>
               )}
             </Box>
-            <EmojiPicker />
+            <VStack>
+              <EmojiButton />
+              <Box mb={16}>
+                <EmojiPicker />
+              </Box>
+            </VStack>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <FormControl isInvalid={errors.name}>
-                <FormLabel htmlFor="book_title">Book title</FormLabel>
+              <FormControl mt={8} isInvalid={errors.name}>
+                <FormLabel>The book is known as</FormLabel>
                 <Input
-                  name="title"
-                  placeholder="title"
+                  name="aka"
+                  placeholder="That O'Reilly's JavaScript book"
                   ref={register}
                   autoComplete="off"
                   mb={8}
+                  w="100%"
                 />
-                <FormLabel htmlFor="author">Book author</FormLabel>
-                <Input
-                  name="author"
-                  placeholder="author"
-                  autoComplete="off"
-                  ref={register}
-                  mb={8}
-                />
-                <FormLabel htmlFor="published_at">Published At</FormLabel>
-                <Input
-                  name="published_at"
-                  placeholder="published_at"
-                  autoComplete="off"
-                  ref={register}
-                  mb={8}
-                />
+                {/* <FormLabel htmlFor="author">Book author</FormLabel>
+                  <Input
+                    name="author"
+                    placeholder="author"
+                    autoComplete="off"
+                    ref={register}
+                    size="lg"
+                    mb={8}
+                  />
+                  <FormLabel htmlFor="published_at">Published At</FormLabel>
+                  <Input
+                    name="published_at"
+                    placeholder="published_at"
+                    autoComplete="off"
+                    ref={register}
+                    mb={8}
+                  /> */}
                 <FormErrorMessage>
                   {errors.name && errors.name.message}
                 </FormErrorMessage>

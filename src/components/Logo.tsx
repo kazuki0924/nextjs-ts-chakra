@@ -1,15 +1,14 @@
-import React from 'react';
-import { HStack, Text } from '@chakra-ui/react';
+import { Box, HStack, Text } from '@chakra-ui/react';
 
-export default function Logo<T>(props: T) {
+export const Logo = <T extends {}>(props: T) => {
   return (
-    <HStack spacing="0px" {...props}>
-      <Text fontSize="3rem" fontWeight="bold">
-        📚
-      </Text>
-      <Text fontSize="2rem" fontWeight="bold">
-        wyr
-      </Text>
-    </HStack>
+    <Box {...props}>
+      <HStack spacing="0px">
+        <Text fontSize="3rem">📚</Text>
+        <Text fontSize="2rem" fontWeight="bold">
+          wyr
+        </Text>
+      </HStack>
+    </Box>
   );
-}
+};

@@ -1,12 +1,17 @@
-import dynamic from 'next/dynamic';
-import React from 'react';
+import 'emoji-mart/css/emoji-mart.css';
 
-const BookTest = dynamic(() => import('../components/BookTest'), {
+import dynamic from 'next/dynamic';
+
+import { Layout } from '../components/Layout';
+
+const Books = dynamic(() => import('../components/Book/Books'), {
   ssr: false,
 });
 
-const Home = () => {
-  return <BookTest />;
+export const Home = () => {
+  return (
+    <Layout>
+      <Books />
+    </Layout>
+  );
 };
-
-export default Home;

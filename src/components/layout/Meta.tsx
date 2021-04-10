@@ -1,11 +1,9 @@
-import Head from "next/head";
+import Head from 'next/head';
 
-const Meta = () => {
+export const Meta = () => {
   return (
     <Head>
       <title>wyr - What You Read App</title>
     </Head>
   );
 };
-
-export default Meta;

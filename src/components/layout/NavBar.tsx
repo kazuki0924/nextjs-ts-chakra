@@ -1,110 +1,165 @@
-import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import {
-  Avatar,
-  Box,
-  Button,
-  Flex,
-  HStack,
-  IconButton,
-  Link,
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList,
-  Stack,
-  useColorModeValue,
-  useDisclosure,
+  FaBaby, FaChartBar, FaEllipsisV, FaFilter, FaFolder, FaInfo, FaPoo, FaSmile, FaSortNumericDown,
+  FaTags, FaTasks, FaToggleOn, FaTrashRestore, FaUserAlt,
+} from 'react-icons/fa';
+
+import {
+  Box, Button, Container, Flex, Heading, HStack, IconButton, Link, Menu, MenuButton, MenuList,
+  Stack, useColorModeValue,
 } from '@chakra-ui/react';
-import React, { ReactNode } from 'react';
-import BookDrawer from '../BookDrawer';
-import Logo from '../Logo';
-import ThemeToggle from '../ThemeToggle';
 
-const Links = ['Dashboard', 'Projects', 'Team'];
+import BookDrawer from '../Book/BookDrawer';
+import { Logo } from '../Logo';
+import { ThemeToggle } from '../ThemeToggle';
 
-const NavLink = ({ children }: { children: ReactNode }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={'md'}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
-    }}
-    href={'#'}
-  >
-    {children}
-  </Link>
-);
-
-const NavBar = <T extends {}>(props: T) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
+export const NavBar = () => {
   return (
-    <>
-      <Box px={4} {...props}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <IconButton
-            size={'md'}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={'Open Menu'}
-            display={{ md: !isOpen ? 'none' : 'inherit' }}
-            onClick={isOpen ? onClose : onOpen}
-          />
-          <HStack spacing={8} alignItems={'center'}>
-            <Link href="/">
-              <Logo />
-            </Link>
-            <HStack
-              as={'nav'}
-              spacing={4}
-              display={{ base: 'none', md: 'flex' }}
+    <Box>
+      <Flex
+        pos="fixed"
+        top="0"
+        w={'full'}
+        minH={'60px'}
+        boxShadow={'sm'}
+        zIndex="999"
+        justify={'center'}
+        css={{
+          backdropFilter: 'saturate(180%) blur(5px)',
+          backgroundColor: useColorModeValue(
+            'rgba(255, 255, 255, 0.8)',
+            'rgba(26, 32, 44, 0.8)'
+          ),
+        }}
+      >
+        <Container
+          as={Flex}
+          maxW={'7xl'}
+          align={'center'}
+          style={{ textDecoration: 'none' }}
+        >
+          <Flex
+            flex={{ base: 1, md: 'auto' }}
+            justify={{ base: 'center', md: 'start' }}
+          >
+            <Link
+              href={'/'}
+              textDecoration="none"
+              _hover={{ textDecoration: 'none' }}
+              passHref
             >
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </HStack>
-          </HStack>
-          <Flex alignItems={'center'}>
-            <ThemeToggle />
-            <BookDrawer />
-            <Menu>
-              <MenuButton
-                as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
+              <Stack
+                as={'a'}
+                direction={'row'}
+                alignItems={'center'}
+                spacing={{ base: 2, sm: 4 }}
               >
-                <Avatar
-                  size={'sm'}
-                  src={
-                    'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
-                  }
-                />
-              </MenuButton>
-              <MenuList>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
-                <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
-              </MenuList>
-            </Menu>
+                <Heading
+                  as={'h1'}
+                  fontSize={'xl'}
+                  display={{ base: 'none', md: 'block' }}
+                >
+                  <Logo />
+                </Heading>
+              </Stack>
+            </Link>
           </Flex>
-        </Flex>
 
-        {isOpen ? (
-          <Box pb={4}>
-            <Stack as={'nav'} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </Stack>
-          </Box>
-        ) : null}
-      </Box>
-    </>
+          <Stack
+            direction={'row'}
+            align={'center'}
+            spacing={8}
+            flex={{ base: 1, md: 'auto' }}
+            justify={'center'}
+          >
+            <HStack spacing="0.5rem">
+              <Menu closeOnSelect={false}>
+                <MenuButton as={Button} colorScheme="gray">
+                  <FaFilter />
+                </MenuButton>
+                <MenuList>
+                  <IconButton
+                    colorScheme="gray"
+                    aria-label="label"
+                    icon={<FaPoo />}
+                  />
+                  <IconButton
+                    colorScheme="gray"
+                    aria-label="label"
+                    icon={<FaTags />}
+                  />
+                  <IconButton
+                    colorScheme="gray"
+                    aria-label="label"
+                    icon={<FaFolder />}
+                  />
+                  <IconButton
+                    colorScheme="gray"
+                    aria-label="label"
+                    icon={<FaSortNumericDown />}
+                  />
+                </MenuList>
+              </Menu>
+
+              <IconButton
+                colorScheme="gray"
+                aria-label="label"
+                icon={<FaInfo />}
+              />
+              <IconButton
+                colorScheme="gray"
+                aria-label="label"
+                icon={<FaChartBar />}
+              />
+              <IconButton
+                colorScheme="gray"
+                aria-label="label"
+                icon={<FaTasks />}
+              />
+              <IconButton
+                colorScheme="gray"
+                aria-label="label"
+                icon={<FaTrashRestore />}
+              />
+
+              <Menu closeOnSelect={false}>
+                <MenuButton as={Button} colorScheme="gray">
+                  <FaEllipsisV />
+                </MenuButton>
+                <MenuList>
+                  <Button>
+                    <Stack spacing={0}>
+                      <FaSmile />
+                      <FaToggleOn />
+                    </Stack>
+                  </Button>
+                  <Button>
+                    <Stack spacing={0}>
+                      <FaBaby />
+                      <FaToggleOn />
+                    </Stack>
+                  </Button>
+                </MenuList>
+              </Menu>
+              <ThemeToggle />
+              <IconButton
+                colorScheme="gray"
+                aria-label="label"
+                icon={<FaUserAlt />}
+              />
+            </HStack>
+          </Stack>
+
+          <Stack
+            direction={'row'}
+            align={'center'}
+            spacing={8}
+            flex={{ base: 1, md: 'auto' }}
+            justify={'flex-end'}
+          >
+            <BookDrawer />
+          </Stack>
+        </Container>
+      </Flex>
+    </Box>
   );
 };
-
-export default NavBar;
