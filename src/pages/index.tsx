@@ -8,10 +8,10 @@ const Books = dynamic(() => import('../components/Book/Books'), {
   ssr: false,
 });
 
-export const Home = () => {
+export default function Home() {
   return (
     <Layout>
       <Books />
     </Layout>
   );
-};
+}

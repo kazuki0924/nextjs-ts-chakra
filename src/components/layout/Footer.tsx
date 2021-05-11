@@ -28,7 +28,7 @@ export const Footer = () => {
             ml: 8,
           }}
         >
-          <NextLink href={'/'} passHref>
+          <NextLink href={'/'}>
             <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
               <Logo />
             </Link>

@@ -10,7 +10,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 import customTheme from '../styles/customTheme';
 
-export const App = ({ Component, pageProps }: AppProps) => {
+export default function App({ Component, pageProps }: AppProps) {
   const queryClientRef = useRef<QueryClient>();
   if (!queryClientRef.current) {
     queryClientRef.current = new QueryClient();
@@ -31,4 +31,4 @@ export const App = ({ Component, pageProps }: AppProps) => {
       </QueryClientProvider>
     </RecoilRoot>
   );
-};
+}

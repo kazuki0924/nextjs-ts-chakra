@@ -45,7 +45,6 @@ export const NavBar = () => {
               href={'/'}
               textDecoration="none"
               _hover={{ textDecoration: 'none' }}
-              passHref
             >
               <Stack
                 as={'a'}

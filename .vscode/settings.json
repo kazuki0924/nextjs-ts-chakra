@@ -8,5 +8,6 @@
     ".parcel-cache": true,
     "**/*.map": true
   },
-  "explorerExclude.backup": null
+  "explorerExclude.backup": null,
+  "vva.trustedDomain": false
 }
